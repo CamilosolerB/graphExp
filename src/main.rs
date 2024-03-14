@@ -11,17 +11,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut chart = ChartBuilder::on(&root)
         .x_label_area_size(40)
         .y_label_area_size(40)
-        .build_cartesian_2d(0f64..50f64, 0f64..150f64)?;
+        .build_cartesian_2d(0f64..50f64, 0f64..1500f64)?;
 
     chart
         .configure_mesh()
         .draw()?;
 
-    let x: Vec<f64> = (0..=1000).map(|i| i as f64 * 0.1).collect();
+    let x: Vec<f64> = (0..=100).map(|i| i as f64 * 0.1).collect();
     let y: Vec<f64> = x.iter().map(|&i| int_identidad(i)).collect();
 
     for (i, (&x_val, &y_val)) in x.iter().zip(y.iter()).enumerate() {
-        println!("Punto {}: ({}, {}), diferencia con la integral = {}", i, x_val, y_val,(E.powf(i as f64) - y_val));
+        println!("x: {}, f(x) {}, x - f(x) {}",x_val, y_val, (x_val - y_val))
+        //println!("Punto {}: ({}, {}), diferencia con la integral = {}", i, x_val, y_val,(int_identidad(i as f64) - y_val));
     }
     chart.draw_series(LineSeries::new(
         x.iter().zip(y.iter()).map(|(&x, &y)| (x, y)),

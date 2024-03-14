@@ -24,7 +24,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let y: Vec<f64> = x.iter().map(|&i| int_identidad(i)).collect();
 
     for (i, (&x_val, &y_val)) in x.iter().zip(y.iter()).enumerate() {
-        println!(" x: {} | f(x) {} | x - f(x) {}", i,x_val, y_val, (x_val - y_val))
+        println!(" x: {} | f(x) {} | x - f(x) {}",x_val, y_val, (x_val - y_val))
         //println!("Punto {}: ({}, {}), diferencia con la integral = {}", i, x_val, y_val,(int_identidad(i as f64) - y_val));
     }
     chart.draw_series(LineSeries::new(
